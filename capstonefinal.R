@@ -35,56 +35,128 @@ ui <- fluidPage(theme = shinytheme("journal"),
                                          ),
                                          
                                          tabPanel(
-                                           title = "Sign in", 
+                                           
+                                           title = "Login",
+                                           
+                                           
+                                           
                                            
                                            
                                            tagList(
-                                             div(id = "Sign in",
+                                             
+                                             div(id = "login",
+                                                 
                                                  wellPanel(textInput("userName", "Username"),
+                                                           
                                                            passwordInput("passwd", "Password"),
-                                                           br(),actionButton("Signin", "sign in"))),
-                                             tags$style(type="text/css", "signin {font-size:10px;   text-align: center;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}")
+                                                           
+                                                           br(),actionButton("Login", "Log in"),
+                                                           
+                                                           verbatimTextOutput("dataInfo")
+                                                           
+                                                           
+                                                           
+                                                           
+                                                           
+                                                 )),
+                                             
+                                             tags$style(type="text/css", "login {font-size:10px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}")
+                                             
                                            )
                                            
                                            
+                                           
+                                           
+                                           
                                          ),
                                          
                                          
-                                         tabPanel(title = "Sign Up", 
-                                                  h1(strong("Sign Up:")),
+                                         
+                                         
+                                         
+                                         tabPanel(title = "New User",
+                                                  
+                                                  h1(strong("New User Registration:")),
+                                                  
+                                                  
+                                                  
+                                                  #             column(5, textInput('Name', 'Full Name:', width = '100%', placeholder = "Enter your name")),
+                                                  
+                                                  
                                                   
                                                   
                                                   
                                                   tagList(
+                                                    
                                                     div(id = "NewUser",
+                                                        
                                                         wellPanel(
+                                                          
                                                           textInput('Name', 'Full Name:', width = '100%', placeholder = "Enter your name"),
-                                                          textInput ('Role', 'Role:', "submitter", width = '100%'),
-                                                          textInput('CustID', 'User ID:', width = '100%', placeholder = "Enter User ID"),
+                                                          
+                                                          textInput ('Role', 'Role:', "customer", width = '100%'),
+                                                          
+                                                          textInput('UserId', 'User ID:', width = '100%', placeholder = "Enter User ID"),
+                                                          
                                                           passwordInput('Password', 'Password:', width = '100%'),
+                                                          
                                                           br(),
+                                                          
                                                           actionButton("submit", "Submit"),
+                                                          
                                                           actionButton("cancel", "Cancel")
+                                                          
                                                         )
+                                                        
                                                     ),
-                                                    tags$style(type="text/css", "login {font-size:12px;   text-align: center;position:absolute;top: 40%;left: 20%;margin-top: -100px;margin-left: -150px;}")
+                                                    
+                                                    tags$style(type="text/css", "login {font-size:10px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}")
+                                                    
                                                   )
+                                                  
+                                                  
                                                   
                                          ),
                                          
-                                         tabPanel(title = "Submitter", 
+                                         
+                                         
+                                         tabPanel(title = "Customer",
+                                                  
                                                   h1(strong("Order your Test")),
                                                   
+                                                  
+                                                  
                                                   tagList(
-                                                    div(id = "Submitter",
-                                                        wellPanel(textInput("CustID", "Submitter ID:"),
-                                                                  selectInput("gender", "Gender:",c("Male", "Female","Transgender")),
-                                                                  dateInput("RequestDate", "Request Date", format = "yyyy-mm-dd"),
-                                                                  htmlOutput("TestName"),
-                                                                  htmlOutput("LabLocation"),
-                                                                  br(),actionButton("order", "Request"))),
+                                                    
+                                                    div(id = "Customer",
+                                                        
+                                                        wellPanel(
+                                                          
+                                                          
+                                                          
+                                                          verbatimTextOutput("CustInfo"),
+                                                          
+                                                          
+                                                          
+                                                          htmlOutput("CustId"),
+                                                          
+                                                          selectInput("gender", "Gender:",c("Male", "Female")),
+                                                          
+                                                          dateInput("RequestDate", "Request Date", format = "yyyy-mm-dd"),
+                                                          
+                                                          htmlOutput("TestName1"),
+                                                          
+                                                          htmlOutput("LabLocation1"),
+                                                          
+                                                          br(),actionButton("order", "Order"))),
+                                                    
                                                     tags$style(type="text/css", "login {font-size:10px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}")
+                                                    
                                                   )
+                                                  
+                                                  
+                                                  
+                                                  
                                                   
                                                   
                                                   
@@ -92,41 +164,98 @@ ui <- fluidPage(theme = shinytheme("journal"),
                                          
                                          ############ Analyst page page UI
                                          
-                                         tabPanel(title = "Analyst", 
+                                         
+                                         
+                                         
+                                         ############ Analyst page page UI
+                                         
+                                         
+                                         
+                                         tabPanel(title = "Analyst",
+                                                  
                                                   h1(strong("Analyst Page")),
+                                                  
+                                                  
                                                   
                                                   navbarPage("", id = "analystpage",
                                                              
                                                              
-                                                             frow1 <- fluidRow(                
-                                                               
-                                                               title = "Test Results", width = "1000px"
-                                                               ,status = "primary"
-                                                               ,solidHeader = TRUE 
-                                                               ,collapsible = TRUE 
-                                                               ,DTOutput("Results", height = "300px", width = "1000px")
-                                                               ,actionButton("action", label = "Write to DB")
-                                                             ),      
                                                              
+                                                             verbatimTextOutput("AnaInfo"),
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             frow1 <- fluidRow(               
+                                                               
+                                                               
+                                                               
+                                                               title = "Test Results"
+                                                               
+                                                               ,actionButton("displayResults", label = "Display Records")
+                                                               
+                                                               ,actionButton("action", label = "Update Records")
+                                                               
+                                                               ,br(),br()
+                                                               
+                                                               , width = "1100px"
+                                                               
+                                                               ,status = "primary"
+                                                               
+                                                               ,solidHeader = TRUE
+                                                               
+                                                               ,collapsible = TRUE
+                                                               
+                                                               ,label = "View Results"   ### )
+                                                               
+                                                               ,DTOutput("Results", height = "300px", width = "1100px")
+                                                               
+                                                               ###           ,actionButton("action", label = "Write to DB")
+                                                               
+                                                             ),     
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             ##### Add new tests tab
                                                              
                                                              
                                                              
                                                              tabPanel("Add New Test Types", id= "testtypes",
                                                                       
+                                                                      
+                                                                      
                                                                       tagList(
+                                                                        
                                                                         div(id = "TestTypes", br(), br(),
+                                                                            
                                                                             wellPanel(
                                                                               
+                                                                              
+                                                                              
                                                                               br(),
+                                                                              
                                                                               textInput ("TestName", "Test Name:"),
                                                                               
+                                                                              
+                                                                              
                                                                               br(),actionButton("save", "Save"))),
+                                                                        
                                                                         tags$style(type="text/css", "login {font-size:10px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}")
-                                                                      )          
+                                                                        
+                                                                      )         
+                                                                      
                                                              )
+                                                             
                                                   )
                                                   
-                                         ),     #Analyst tab end
+                                                  
+                                                  
+                                         ),      #Analyst tab end
                                          
                                          
                                          ##Dashboard - UI Page
