@@ -501,11 +501,6 @@ sqlitePath <- "C:/Users/18127/Documents/Capstonefinaldb/data.sqlite"
 
 
 
-top_dir <- here()
-
-sqlitePath <- paste0(top_dir,'/',"data.sqlite")
-
-
 
 
 
